@@ -33,6 +33,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
 @SpringBootApplication
@@ -46,6 +47,14 @@ public class HerokuApplication {
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(HerokuApplication.class, args);
+  }
+
+  private String getRandomString() {
+    String rand = "";
+    for (int i = 0; i < 10; i++) {
+      rand += (char) (ThreadLocalRandom.current().nextInt((int) 'a', (int) 'z'));
+    }
+    return rand;
   }
 
   @RequestMapping("/")
